@@ -1,4 +1,5 @@
-﻿using GameGuard.Application.Players.Dtos;
+﻿using GameGuard.Application.Players;
+using GameGuard.Application.Players.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameGuard.API.Controllers
@@ -7,10 +8,17 @@ namespace GameGuard.API.Controllers
     [Route("api/[controller]")]
     public class PlayersController : ControllerBase
     {
-        [HttpGet("summary")]
-        public ActionResult<PlayersSummaryDto> GetPlayersSummary()
+        private readonly IPlayerService _playerService;
+
+        public PlayersController(IPlayerService playerService)
         {
-            var playersStats = new PlayersSummaryDto(5, 4, 2, 1);
+            _playerService = playerService;
+        }
+
+        [HttpGet("summary")]
+        public async Task<ActionResult<PlayersSummaryDto>> GetPlayersSummaryAsync()
+        {
+            var playersStats = await _playerService.GetPlayersSummaryAsync();
 
             return Ok(playersStats);
         }

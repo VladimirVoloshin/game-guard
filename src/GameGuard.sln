@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameGuard.Domain", "GameGua
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameGuard.Infrastructure", "GameGuard.Infrastructure\GameGuard.Infrastructure.csproj", "{EE055306-A7A7-4C33-888A-85955125457D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameGuard.ApplicationTests", "UnitTests\GameGuard.ApplicationTests\GameGuard.ApplicationTests.csproj", "{3A73929D-1281-4163-817F-43C12BB6D27F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,9 +37,16 @@ Global
 		{EE055306-A7A7-4C33-888A-85955125457D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE055306-A7A7-4C33-888A-85955125457D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE055306-A7A7-4C33-888A-85955125457D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A73929D-1281-4163-817F-43C12BB6D27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A73929D-1281-4163-817F-43C12BB6D27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A73929D-1281-4163-817F-43C12BB6D27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A73929D-1281-4163-817F-43C12BB6D27F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A73929D-1281-4163-817F-43C12BB6D27F} = {656966F8-1483-40A5-A36D-AE0E39F4EE0F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A6576EC7-596B-4CB1-A406-AF8666AEC987}

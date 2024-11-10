@@ -1,4 +1,7 @@
+using GameGuard.Application.Players;
+using GameGuard.Domain.Players;
 using GameGuard.Infrastructure;
+using GameGuard.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -11,10 +14,9 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
+        RegisterServices(builder);
 
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -39,6 +41,12 @@ internal class Program
         app.UseCors(CORS_POLICY);
 
         app.Run();
+    }
+
+    private static void RegisterServices(WebApplicationBuilder builder)
+    {
+        builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+        builder.Services.AddScoped<IPlayerService, PlayerService>();
     }
 
     private static IConfigurationRoot BuildConfiguration(WebApplicationBuilder builder)
