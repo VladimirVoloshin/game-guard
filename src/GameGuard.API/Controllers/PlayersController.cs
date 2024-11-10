@@ -7,7 +7,7 @@ namespace GameGuard.API.Controllers
     [Route("api/[controller]")]
     public class PlayersController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("summary")]
         public ActionResult<PlayersSummaryDto> GetPlayersSummary()
         {
             var playersStats = new PlayersSummaryDto(5, 4, 2, 1);

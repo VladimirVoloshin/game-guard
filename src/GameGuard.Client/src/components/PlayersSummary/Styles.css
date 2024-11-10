@@ -1,0 +1,11 @@
+.active-players .ant-statistic-content {
+    color: #3f8600;
+}
+
+.suspicious-players .ant-statistic-content {
+    color: #faad14;
+}
+
+.banned-players .ant-statistic-content {
+    color: #cf1322;
+}
