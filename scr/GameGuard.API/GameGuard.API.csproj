@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\GameGuard.Application\GameGuard.Application.csproj" />
   </ItemGroup>
 
 </Project>
