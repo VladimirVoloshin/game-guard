@@ -2,9 +2,11 @@
 {
     public class Player
     {
-        public Player(string username)
+        public Player(int id, string username, PlayerStatusType status)
         {
+            Id = id;
             Username = username;
+            Status = status;
         }
 
         public int Id { get; private set; }

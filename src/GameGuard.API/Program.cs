@@ -1,9 +1,11 @@
-using Microsoft.AspNetCore.Cors.Infrastructure;
+using GameGuard.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 internal class Program
 {
     private const string CORS_ORIGINS_SET = "CorsOrigins";
     private const string CORS_POLICY = "CorsPolicy";
+    private const string DB_CONNECTION_STRING_SET = "DefaultConnection";
 
     private static void Main(string[] args)
     {
@@ -18,6 +20,8 @@ internal class Program
 
         var config = BuildConfiguration(builder);
         ConfigureLocalCORSSettings(builder, config);
+
+        ConfigureDatabase(builder);
 
         var app = builder.Build();
 
@@ -70,5 +74,34 @@ internal class Program
                 );
             });
         }
+    }
+
+    private static void ConfigureDatabase(WebApplicationBuilder builder)
+    {
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlite(
+                builder.Configuration.GetConnectionString(DB_CONNECTION_STRING_SET),
+                b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)
+            )
+        );
+
+        if (builder.Environment.IsDevelopment())
+        {
+            var serviceProvider = builder.Services.BuildServiceProvider();
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.Migrate();
+
+                ClearActivityLogs(dbContext);
+            }
+        }
+    }
+
+    private static void ClearActivityLogs(AppDbContext dbContext)
+    {
+        dbContext.ActivityLogs.RemoveRange(dbContext.ActivityLogs);
+        dbContext.SaveChanges();
+        Console.WriteLine("ActivityLogs table has been cleared.");
     }
 }

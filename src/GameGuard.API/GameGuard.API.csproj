@@ -10,10 +10,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GameGuard.Application\GameGuard.Application.csproj" />
+    <ProjectReference Include="..\GameGuard.Infrastructure\GameGuard.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
