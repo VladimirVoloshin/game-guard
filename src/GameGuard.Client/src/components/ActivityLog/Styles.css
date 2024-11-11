@@ -1,0 +1,148 @@
+.suspicious-switch-container {
+    display: flex;
+    align-items: center;
+}
+
+.suspicious-switch-on.ant-switch-checked {
+    background-color: #ff4d4f !important;
+}
+
+.suspicious-switch-on:not(.ant-switch-checked) {
+    background-color: rgba(0, 0, 0, 0.25) !important;
+}
+
+.suspicious-label {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.suspicious-row {
+    background-color: #fff3f3 !important;
+}
+
+.activity-log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.activity-log-controls {
+    display: flex;
+    align-items: center;
+}
+
+.refresh-button {
+    margin-right: 16px;
+    border-radius: 6px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e6e6e6 !important;
+    color: #000000 !important;
+    transition: all 0.3s !important;
+}
+
+.refresh-button:hover {
+    background-color: #e8e8e8 !important;
+    border-color: #d5d5d5 !important;
+}
+
+.refresh-button .reload-icon {
+    margin-right: 10px
+}
+
+.auto-refresh-container {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.auto-refresh-switch {
+    margin-right: 8px;
+}
+
+.auto-refresh-label {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+.review-status {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 100%; 
+  }
+  
+  .review-icon {
+    font-size: 20px;
+  }
+  
+  .reviewed .review-icon {
+    color: #52c41a;
+  }
+  
+  .not-reviewed .review-icon {
+    color: #d9d9d9;
+  }
+
+  .activity-log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .activity-log-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-select {
+    width: 300px;
+    margin-right: 10px;
+  }
+  
+  .suspicious-select {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .refresh-button {
+    margin-right: 10px;
+  }
+  
+  .auto-refresh-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .auto-refresh-switch {
+    margin-right: 5px;
+  }
+  
+  .suspicious-switch-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .suspicious-label {
+    margin-left: 5px;
+  }
+  
+  .review-status {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .review-icon {
+    font-size: 18px;
+  }
+  
+  .suspicious-row {
+    background-color: #fff1f0;
+  }
+  
+  .activity-log-pagination {
+    margin-top: 20px;
+    text-align: right;
+  }

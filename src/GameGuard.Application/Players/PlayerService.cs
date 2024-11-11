@@ -32,5 +32,17 @@ namespace GameGuard.Application.Players
                 Banned: banned
             );
         }
+
+        public async Task<IEnumerable<PlayerDto>> GetPlayersAsync()
+        {
+            var players = await _playerRepository.GetAllAsync();
+
+            return players.Select(x => new PlayerDto(
+                x.Id,
+                x.Username,
+                (int)x.Status,
+                x.Status.ToString()
+            ));
+        }
     }
 }

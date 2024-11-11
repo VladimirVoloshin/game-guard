@@ -1,4 +1,6 @@
+using GameGuard.Application.ActivityLogs;
 using GameGuard.Application.Players;
+using GameGuard.Domain.ActivityLogs;
 using GameGuard.Domain.Players;
 using GameGuard.Infrastructure;
 using GameGuard.Infrastructure.Repositories;
@@ -47,6 +49,8 @@ internal class Program
     {
         builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
         builder.Services.AddScoped<IPlayerService, PlayerService>();
+        builder.Services.AddScoped<IActivityLogRepository, ActivityLogRepository>();
+        builder.Services.AddScoped<IActivityLogService, ActivityLogService>();
     }
 
     private static IConfigurationRoot BuildConfiguration(WebApplicationBuilder builder)

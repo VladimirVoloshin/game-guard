@@ -19,5 +19,10 @@ namespace GameGuard.Infrastructure.Repositories
                 .Select(g => new PlayerStatusSummary(g.Key, g.Count()))
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Player>> GetAllAsync()
+        {
+            return await _context.Players.ToListAsync();
+        }
     }
 }

@@ -3,5 +3,6 @@
     public interface IPlayerRepository
     {
         Task<IEnumerable<PlayerStatusSummary>> GetPlayersStatusesSummaryAsync();
+        Task<IEnumerable<Player>> GetAllAsync();
     }
 }

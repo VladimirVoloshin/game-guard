@@ -7,6 +7,9 @@ const responseBody = <T>(response: AxiosResponse<T>): T => response.data;
 const requests = { 
   get: async <T>(url: string) => 
     await axios.get<T>(url).then(responseBody), 
+  
+  put: async <T>(url: string, body: unknown) => 
+    await axios.put<T>(url, body).then(responseBody), 
 }; 
  
 export default requests;
