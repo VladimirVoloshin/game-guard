@@ -24,7 +24,7 @@ namespace GameGuard.API.Controllers
         }
 
         [HttpGet()]
-        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayers()
+        public async Task<ActionResult<IEnumerable<PlayerDto>>> GetPlayersAsync()
         {
             var players = await _playerService.GetPlayersAsync();
 

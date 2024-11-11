@@ -10,6 +10,7 @@ namespace GameGuard.Application.ActivityLogs
             int page,
             int pageSize
         );
+        Task AddActivityAsync(AddActivityLogDto addActivityLog);
         Task ReviewActivityAsync(int activityId, bool isSuspicious);
     }
 }

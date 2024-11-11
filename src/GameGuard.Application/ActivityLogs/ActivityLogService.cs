@@ -46,6 +46,12 @@ namespace GameGuard.Application.ActivityLogs
             return new PagedResult<ActivityLogDto>(activityDtos, totalCount, page, pageSize);
         }
 
+        public async Task AddActivityAsync(AddActivityLogDto addActivityLog)
+        {
+            var activity = new ActivityLog(addActivityLog.PlayerId, addActivityLog.Action);
+            await _activityRepository.AddAsync(activity);
+        }
+
         public async Task ReviewActivityAsync(int activityId, bool isSuspicious)
         {
             var activity = await _activityRepository.GetByIdAsync(activityId);

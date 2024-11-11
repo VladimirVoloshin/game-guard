@@ -10,6 +10,7 @@ namespace GameGuard.Domain.ActivityLogs
             int pageSize
         );
         Task<ActivityLog?> GetByIdAsync(int activityId);
+        Task AddAsync(ActivityLog activity);
         Task UpdateAsync(ActivityLog activity);
     }
 }

@@ -34,6 +34,12 @@ namespace GameGuard.Infrastructure.Repositories
             return (activities, totalCount);
         }
 
+        public async Task AddAsync(ActivityLog activity)
+        {
+            await _context.ActivityLogs.AddAsync(activity);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<ActivityLog?> GetByIdAsync(int activityId)
         {
             return await _context.ActivityLogs.FindAsync(activityId);

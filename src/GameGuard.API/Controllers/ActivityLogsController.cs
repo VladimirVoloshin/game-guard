@@ -19,7 +19,7 @@ namespace GameGuard.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagedResult<ActivityLogDto>>> GetAllPlayersActivities(
+        public async Task<ActionResult<PagedResult<ActivityLogDto>>> GetAllPlayersActivitiesAsync(
             [FromQuery] ActivityLogFilterDto filter,
             [FromQuery] int page = FIRST_PAGE,
             [FromQuery] int pageSize = DEFAULT_PAGE_SIZE
@@ -29,8 +29,17 @@ namespace GameGuard.API.Controllers
             return Ok(activities);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddActivityAsync(
+            [FromBody] AddActivityLogDto addPlayerActivity
+        )
+        {
+            await _activityService.AddActivityAsync(addPlayerActivity);
+            return Created();
+        }
+
         [HttpPut("{id}/review")]
-        public async Task<IActionResult> ReviewActivity(
+        public async Task<IActionResult> ReviewActivityAsync(
             int id,
             [FromBody] ReviewActivityDto request
         )

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "GameGuard.PlayerActivityEmulator": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
