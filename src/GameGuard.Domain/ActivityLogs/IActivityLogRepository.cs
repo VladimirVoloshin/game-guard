@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using GameGuard.Domain.Common.Specifications;
+﻿using GameGuard.Domain.Common.Specifications;
 
 namespace GameGuard.Domain.ActivityLogs
 {

@@ -5,6 +5,11 @@ using MediatR;
 
 namespace GameGuard.Domain.ActivityLogs
 {
+    /// <summary>
+    /// Monitors player activities for suspicious behavior using various detection strategies.
+    /// This class combines multiple specifications to identify potential cheating, unauthorized access attempts,
+    /// and other suspicious activities. It marks activities as suspicious when detected.
+    /// </summary>
     public class ActivityMonitor : INotificationHandler<ActivityCreatedEvent>
     {
         private readonly Specification<ActivityLog> _suspiciousActivityCompositeSpecification;
@@ -32,15 +37,15 @@ namespace GameGuard.Domain.ActivityLogs
             }
         }
 
-        private async Task<bool> DetectSuspiciousActivityAsync(ActivityLog activityLog)
+        private Task<bool> DetectSuspiciousActivityAsync(ActivityLog activityLog)
         {
-            return await _suspiciousActivityCompositeSpecification.IsSatisfiedByAsync(activityLog);
+            return _suspiciousActivityCompositeSpecification.IsSatisfiedByAsync(activityLog);
         }
 
-        private async Task HandleSuspiciousActivityAsync(ActivityLog activityLog)
+        private Task HandleSuspiciousActivityAsync(ActivityLog activityLog)
         {
             activityLog.MarkAsSuspicious();
-            await _activityRepository.UpdateAsync(activityLog);
+            return _activityRepository.UpdateAsync(activityLog);
         }
     }
 }

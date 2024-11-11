@@ -2,6 +2,10 @@
 
 namespace GameGuard.Domain.ActivityLogs.Specifications
 {
+    /// <summary>
+    /// Detects suspicious user behavior by identifying consecutive login/logout patterns in recent activity logs.
+    /// Helps flag potential security threats or unusual account activities.
+    /// </summary>
     public class ConsecutiveLoginLogoutSpecification : Specification<ActivityLog>
     {
         private const int RequiredLogCount = 4;

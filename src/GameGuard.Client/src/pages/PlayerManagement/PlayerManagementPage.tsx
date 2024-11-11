@@ -16,7 +16,8 @@ const PlayerManagementPage: React.FC = () => {
 
   const fetchPlayers = async () => {
     const response = await getPlayersAsync()
-    setPlayers(response);
+    if (response)
+      setPlayers(response);
   };
 
   const handleStatusChange = async (playerId: number, newStatusId: number) => {    

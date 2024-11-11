@@ -6,7 +6,6 @@ using GameGuard.Domain.Players;
 using GameGuard.Infrastructure;
 using GameGuard.Infrastructure.Repositories;
 using MediatR;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -104,20 +103,21 @@ internal class Program
         if (builder.Environment.IsDevelopment())
         {
             var serviceProvider = builder.Services.BuildServiceProvider();
-            using (var scope = serviceProvider.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.Migrate();
 
-                ClearActivityLogs(dbContext);
-            }
+            using var scope = serviceProvider.CreateScope();
+
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+            dbContext.Database.Migrate();
+
+            ClearActivityLogs(dbContext);
         }
     }
 
     private static void ClearActivityLogs(AppDbContext dbContext)
     {
         dbContext.ActivityLogs.RemoveRange(dbContext.ActivityLogs);
+
         dbContext.SaveChanges();
-        Console.WriteLine("ActivityLogs table has been cleared.");
     }
 }

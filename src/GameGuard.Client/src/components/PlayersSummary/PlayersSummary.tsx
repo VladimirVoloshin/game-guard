@@ -6,7 +6,7 @@ import { getPlayersSummaryAsync } from '../../services/PlayersClient';
 import './Styles.css';
 
 const PlayersSummary: React.FC = () => {
-    const [stats, setStats] = useState<PlayersSummaryModel>();
+    const [stats, setStats] = useState<PlayersSummaryModel | null | undefined>(undefined);
 
     useEffect(() => {
         fetchPlayersSummary();

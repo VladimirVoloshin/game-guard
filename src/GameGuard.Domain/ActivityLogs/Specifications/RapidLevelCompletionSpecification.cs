@@ -2,6 +2,10 @@
 
 namespace GameGuard.Domain.ActivityLogs.Specifications
 {
+    /// <summary>
+    /// Identifies potentially suspicious rapid level completions.
+    /// Flags players who finish levels unusually quickly, possibly indicating cheating or exploitation.
+    /// </summary>
     public class RapidLevelCompletionSpecification : Specification<ActivityLog>
     {
         private const int RequiredLogCount = 2;
@@ -18,7 +22,7 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
             if (NotLevelCompletionAction(activityLog))
                 return false;
 
-            var recentLogs = await GetRecentLevelCompletionLogs(activityLog.PlayerId);
+            var recentLogs = await GetRecentLevelCompletionLogsAsync(activityLog.PlayerId);
 
             if (NoSufficientRecentLogs(recentLogs))
                 return false;
@@ -26,26 +30,26 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
             return IsRapidCompletion(activityLog, recentLogs[1]);
         }
 
-        private bool NotLevelCompletionAction(ActivityLog log)
+        private static bool NotLevelCompletionAction(ActivityLog log)
         {
             return log.Action != ActivityActionType.CompleteLevel;
         }
 
-        private async Task<IList<ActivityLog>> GetRecentLevelCompletionLogs(int playerId)
+        private Task<IList<ActivityLog>> GetRecentLevelCompletionLogsAsync(int playerId)
         {
-            return await _repository.GetRecentActivityLogsAsync(
+            return _repository.GetRecentActivityLogsAsync(
                 playerId,
                 RequiredLogCount,
                 ActivityActionType.CompleteLevel
             );
         }
 
-        private bool NoSufficientRecentLogs(IList<ActivityLog> logs)
+        private static bool NoSufficientRecentLogs(IList<ActivityLog> logs)
         {
             return logs.Count < RequiredLogCount;
         }
 
-        private bool IsRapidCompletion(ActivityLog currentLog, ActivityLog previousLog)
+        private static bool IsRapidCompletion(ActivityLog currentLog, ActivityLog previousLog)
         {
             var timeDifference = currentLog.Timestamp - previousLog.Timestamp;
             return timeDifference.TotalSeconds < RapidCompletionThresholdSeconds;

@@ -1,20 +1,25 @@
 import { PlayerModel } from "../models/Players/PlayerModel";
 import { PlayersSummaryModel } from "../models/Players/PlayersSummaryModel";
 import requests from "./AxiousClient";
+import { withErrorHandling } from "./errorHandler";
 
-
-export const getPlayersSummaryAsync = async (): Promise<PlayersSummaryModel> => {
-    return await requests.get<PlayersSummaryModel>(
-        `/api/players/summary`
-    );
+export const getPlayersSummaryAsync = (): Promise<PlayersSummaryModel | null> => {
+  return withErrorHandling(
+    () => requests.get<PlayersSummaryModel>('/api/players/summary'),
+    'Failed to fetch players summary. Please try again later.'
+  );
 };
 
-export const getPlayersAsync = async () => {
-    return await requests.get<PlayerModel[]>(
-        `/api/players`
-    );
+export const getPlayersAsync = (): Promise<PlayerModel[] | null> => {
+  return withErrorHandling(
+    () => requests.get<PlayerModel[]>('/api/players'),
+    'Failed to fetch players. Please try again later.'
+  );
 };
 
-export const updatePlayerStatusAsync = async (playerId: number, newStatusId: number) => {
-    return await requests.put(`/api/players/${playerId}/status`, { 'statusId': newStatusId })
-}
+export const updatePlayerStatusAsync = (playerId: number, newStatusId: number): Promise<unknown | null> => {
+  return withErrorHandling(
+    () => requests.put(`/api/players/${playerId}/status`, { 'statusId': newStatusId }),
+    'Failed to update player status. Please try again later.'
+  );
+};

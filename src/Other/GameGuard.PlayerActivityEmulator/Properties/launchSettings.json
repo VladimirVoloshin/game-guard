@@ -1,10 +1,10 @@
 {
   "profiles": {
     "GameGuard.PlayerActivityEmulator": {
-      "commandName": "Project"
-    },
-    "Container (Dockerfile)": {
-      "commandName": "Docker"
+      "commandName": "Project",
+      "environmentVariables": {
+        "API_URL": "http://localhost:5000"
+      }
     }
   }
 }

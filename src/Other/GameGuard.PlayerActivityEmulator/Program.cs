@@ -4,17 +4,19 @@ using GameGuard.PlayerActivityEmulator.PlayerActivityGenerator;
 
 class Program
 {
-    private const int ADD_LOGS_ITERATION_DELAY_SEC = 10;
+    private const int ADD_LOGS_ITERATION_DELAY_SEC = 5;
 
     private static readonly string apiUrl =
-        Environment.GetEnvironmentVariable("API_URL") ?? "http://localhost:5063";
-    private static readonly HttpClient httpClient = new HttpClient();
+        Environment.GetEnvironmentVariable("API_URL") ?? string.Empty;
+    private static readonly HttpClient httpClient = new();
 
-    private static readonly PlayerActivityGeneratorFactory _activityGeneratorFactory =
-        new PlayerActivityGeneratorFactory();
+    private static readonly PlayerActivityGeneratorFactory _activityGeneratorFactory = new();
 
     static async Task Main(string[] args)
     {
+        if (string.IsNullOrEmpty(apiUrl))
+            Console.WriteLine("API_URL environment variable missing.");
+
         Console.WriteLine($"Using API URL: {apiUrl}");
 
         var playerService = new PlayerClient(apiUrl, httpClient);

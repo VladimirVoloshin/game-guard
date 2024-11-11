@@ -1,12 +1,14 @@
+// activityLogClient.ts
 import { ActivityLogModel } from "../models/ActivityLogs/ActivityLogModel";
 import requests from "./AxiousClient";
+import { withErrorHandling } from "./errorHandler";
 
-export const getActivityLogs = async (
+export const getActivityLogs = (
     playerIds: number[],
     isSuspicious: number,
     page: number,
     pageSize: number
-): Promise<{ items: ActivityLogModel[], totalCount: number }> => {
+): Promise<{ items: ActivityLogModel[], totalCount: number } | null> => {
     const params = new URLSearchParams();
 
     playerIds.forEach(id => params.append('PlayerIds', id.toString()));
@@ -18,11 +20,17 @@ export const getActivityLogs = async (
     params.append('page', page.toString());
     params.append('pageSize', pageSize.toString());
 
-    return await requests.get<{ items: ActivityLogModel[], totalCount: number }>(
-        `/api/ActivityLogs?${params.toString()}`
+    return withErrorHandling(
+        () => requests.get<{ items: ActivityLogModel[], totalCount: number }>(
+            `/api/ActivityLogs?${params.toString()}`
+        ),
+        'Failed to fetch activity logs. Please try again later.'
     );
 };
 
-export const reviewActivityLog = async (activityLogId: number, isSuspicious: boolean) => {
-    await requests.put(`/api/ActivityLogs/${activityLogId}/review`, { isSuspicious });
+export const reviewActivityLog = (activityLogId: number, isSuspicious: boolean): Promise<unknown | null> => {
+    return withErrorHandling(
+        () => requests.put(`/api/ActivityLogs/${activityLogId}/review`, { isSuspicious }),
+        'Failed to review activity log. Please try again later.'
+    );
 };

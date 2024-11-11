@@ -2,6 +2,10 @@
 
 namespace GameGuard.Domain.ActivityLogs.Specifications
 {
+    /// <summary>
+    /// Detects potential brute force password attacks by identifying repeated invalid login attempts.
+    /// Flags users who make multiple consecutive failed password entries, indicating possible unauthorized access attempts.
+    /// </summary>
     public class RepeatedInvalidPasswordSpecification : Specification<ActivityLog>
     {
         private const int RequiredInvalidAttempts = 3;
@@ -22,12 +26,12 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
                 && AllLogsAreInvalidPasswordAttempts(recentLogs);
         }
 
-        private bool HasRequiredNumberOfLogs(IList<ActivityLog> logs)
+        private static bool HasRequiredNumberOfLogs(IList<ActivityLog> logs)
         {
             return logs.Count == RequiredInvalidAttempts;
         }
 
-        private bool AllLogsAreInvalidPasswordAttempts(IList<ActivityLog> logs)
+        private static bool AllLogsAreInvalidPasswordAttempts(IList<ActivityLog> logs)
         {
             return logs.All(x => x.Action == ActivityActionType.InvalidPassword);
         }

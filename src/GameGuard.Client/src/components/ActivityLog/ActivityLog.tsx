@@ -34,13 +34,18 @@ const ActivityLog: React.FC = () => {
 
   const fetchActivities = async () => {
     const result = await getActivityLogs(selectedPlayers, isSuspicious, currentPage, pageSize);
-    setActivities(result.items);
-    setTotalCount(result.totalCount);
+    if (result !== null) {
+      setActivities(result.items);
+      setTotalCount(result.totalCount);
+    } else {
+      setActivities([]);
+      setTotalCount(0);
+    }
   };
-
   const fetchPlayers = async () => {
     const fetchedPlayers = await getPlayersAsync();
-    setPlayers(fetchedPlayers);
+    if (fetchedPlayers)
+      setPlayers(fetchedPlayers);
   };  
 
   const handleReviewActivityLog = async (record: ActivityLogModel, checked: boolean) => {
