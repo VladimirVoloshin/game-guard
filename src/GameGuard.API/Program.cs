@@ -1,9 +1,12 @@
 using GameGuard.Application.ActivityLogs;
 using GameGuard.Application.Players;
 using GameGuard.Domain.ActivityLogs;
+using GameGuard.Domain.ActivityLogs.Events;
 using GameGuard.Domain.Players;
 using GameGuard.Infrastructure;
 using GameGuard.Infrastructure.Repositories;
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -29,7 +32,6 @@ internal class Program
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -51,6 +53,8 @@ internal class Program
         builder.Services.AddScoped<IPlayerService, PlayerService>();
         builder.Services.AddScoped<IActivityLogRepository, ActivityLogRepository>();
         builder.Services.AddScoped<IActivityLogService, ActivityLogService>();
+        builder.Services.AddScoped<INotificationHandler<ActivityCreatedEvent>, ActivityMonitor>();
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
     }
 
     private static IConfigurationRoot BuildConfiguration(WebApplicationBuilder builder)

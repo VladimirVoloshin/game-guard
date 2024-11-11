@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace GameGuard.Domain.Common
+namespace GameGuard.Domain.Common.Specifications
 {
     public interface ISpecification<T>
     {

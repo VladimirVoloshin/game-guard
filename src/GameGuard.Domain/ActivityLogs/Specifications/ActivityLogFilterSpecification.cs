@@ -1,14 +1,14 @@
 ﻿using System.Linq.Expressions;
-using GameGuard.Domain.Common;
+using GameGuard.Domain.Common.Specifications;
 
-namespace GameGuard.Domain.ActivityLogs
+namespace GameGuard.Domain.ActivityLogs.Specifications
 {
     public class ActivityLogFilterSpecification : ISpecification<ActivityLog>
     {
-        public IEnumerable<int> PlayerIds { get; }
+        public IEnumerable<int>? PlayerIds { get; }
         public bool? IsSuspicious { get; }
 
-        public ActivityLogFilterSpecification(IEnumerable<int> playerIds, bool? isSuspicious)
+        public ActivityLogFilterSpecification(IEnumerable<int>? playerIds, bool? isSuspicious)
         {
             PlayerIds = playerIds;
             IsSuspicious = isSuspicious;

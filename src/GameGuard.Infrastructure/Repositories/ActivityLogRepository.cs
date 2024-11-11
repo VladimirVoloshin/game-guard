@@ -1,5 +1,5 @@
 ﻿using GameGuard.Domain.ActivityLogs;
-using GameGuard.Domain.Common;
+using GameGuard.Domain.Common.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameGuard.Infrastructure.Repositories
@@ -49,6 +49,22 @@ namespace GameGuard.Infrastructure.Repositories
         {
             _context.ActivityLogs.Attach(activity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IList<ActivityLog>> GetRecentActivityLogsAsync(
+            int playerId,
+            int numberLatestActivities,
+            ActivityActionType? activityActionType = null
+        )
+        {
+            return await _context
+                .ActivityLogs.Where(x =>
+                    x.PlayerId == playerId
+                    && (activityActionType == null || x.Action == activityActionType)
+                )
+                .OrderByDescending(x => x.Timestamp)
+                .Take(numberLatestActivities)
+                .ToListAsync();
         }
     }
 }

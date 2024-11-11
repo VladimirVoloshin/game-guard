@@ -1,7 +1,8 @@
 ﻿using FluentAssertions;
 using GameGuard.Domain.ActivityLogs;
+using GameGuard.Domain.ActivityLogs.Specifications;
 
-namespace GameGuard.DomainTests.ActivityLogs
+namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
     public class ActivityLogFilterSpecificationTests
     {

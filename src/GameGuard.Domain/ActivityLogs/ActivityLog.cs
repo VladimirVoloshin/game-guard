@@ -4,7 +4,16 @@ namespace GameGuard.Domain.ActivityLogs
 {
     public class ActivityLog
     {
-        public ActivityLog(int playerId, ActivityActionType action)
+        public ActivityLog(int playerId, ActivityActionType action, DateTime? timestamp = null)
+        {
+            PlayerId = playerId;
+            Action = action;
+            Timestamp = timestamp ?? DateTime.UtcNow;
+            IsSuspicious = false;
+            IsReviewed = false;
+        }
+
+        protected ActivityLog(int playerId, ActivityActionType action)
         {
             PlayerId = playerId;
             Action = action;

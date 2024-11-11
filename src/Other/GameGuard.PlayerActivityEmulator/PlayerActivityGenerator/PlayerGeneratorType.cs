@@ -4,6 +4,7 @@
     {
         Normal = 1,
         Bot = 2,
-        Cheater = 3
+        Cheater = 3,
+        ForgotPassword = 4
     }
 }

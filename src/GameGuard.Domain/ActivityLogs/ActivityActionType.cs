@@ -5,6 +5,7 @@
         Login = 1,
         Logout = 2,
         CompleteLevel = 3,
-        MaxScorePlayer = 4
+        MaxScorePlayer = 4,
+        InvalidPassword = 5
     }
 }

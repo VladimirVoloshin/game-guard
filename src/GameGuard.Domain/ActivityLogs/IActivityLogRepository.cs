@@ -1,4 +1,5 @@
-﻿using GameGuard.Domain.Common;
+﻿using System.Linq.Expressions;
+using GameGuard.Domain.Common.Specifications;
 
 namespace GameGuard.Domain.ActivityLogs
 {
@@ -12,5 +13,10 @@ namespace GameGuard.Domain.ActivityLogs
         Task<ActivityLog?> GetByIdAsync(int activityId);
         Task AddAsync(ActivityLog activity);
         Task UpdateAsync(ActivityLog activity);
+        Task<IList<ActivityLog>> GetRecentActivityLogsAsync(
+            int playerId,
+            int numberLatestActivities,
+            ActivityActionType? activityActionType = null
+        );
     }
 }

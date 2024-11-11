@@ -2,16 +2,21 @@
 using GameGuard.Application.ActivityLogs.Exceptions;
 using GameGuard.Application.Common;
 using GameGuard.Domain.ActivityLogs;
+using GameGuard.Domain.ActivityLogs.Events;
+using GameGuard.Domain.ActivityLogs.Specifications;
+using MediatR;
 
 namespace GameGuard.Application.ActivityLogs
 {
     public class ActivityLogService : IActivityLogService
     {
         private readonly IActivityLogRepository _activityRepository;
+        private readonly IMediator _mediator;
 
-        public ActivityLogService(IActivityLogRepository activityRepository)
+        public ActivityLogService(IActivityLogRepository activityRepository, IMediator mediator)
         {
             _activityRepository = activityRepository;
+            _mediator = mediator;
         }
 
         public async Task<PagedResult<ActivityLogDto>> GetActivityLogs(
@@ -49,7 +54,10 @@ namespace GameGuard.Application.ActivityLogs
         public async Task AddActivityAsync(AddActivityLogDto addActivityLog)
         {
             var activity = new ActivityLog(addActivityLog.PlayerId, addActivityLog.Action);
+
             await _activityRepository.AddAsync(activity);
+
+            await _mediator.Publish(new ActivityCreatedEvent(activity));
         }
 
         public async Task ReviewActivityAsync(int activityId, bool isSuspicious)

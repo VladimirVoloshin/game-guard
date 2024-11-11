@@ -2,7 +2,8 @@
 using GameGuard.Application.ActivityLogs;
 using GameGuard.Application.ActivityLogs.Dtos;
 using GameGuard.Domain.ActivityLogs;
-using GameGuard.Domain.Common;
+using GameGuard.Domain.Common.Specifications;
+using MediatR;
 using Moq;
 
 namespace GameGuard.ApplicationTests.ActivityLogs
@@ -10,19 +11,21 @@ namespace GameGuard.ApplicationTests.ActivityLogs
     public class ActivityLogServiceTests
     {
         private readonly Mock<IActivityLogRepository> _mockRepository;
+        private readonly Mock<IMediator> _mockMediator;
         private readonly ActivityLogService _service;
 
         public ActivityLogServiceTests()
         {
             _mockRepository = new Mock<IActivityLogRepository>();
-            _service = new ActivityLogService(_mockRepository.Object);
+            _mockMediator = new Mock<IMediator>();
+            _service = new ActivityLogService(_mockRepository.Object, _mockMediator.Object);
         }
 
         [Fact]
         public async Task GetAllPlayerActivitiesAsync_ReturnsPagedResult()
         {
             // Arrange
-            var filter = new ActivityLogFilterDto(new[] { 1, 2 }, true);
+            var filter = new ActivityLogFilterDto([1, 2], true);
             var page = 1;
             var pageSize = 10;
 
@@ -52,7 +55,7 @@ namespace GameGuard.ApplicationTests.ActivityLogs
         public async Task GetAllPlayerActivitiesAsync_EmptyResult()
         {
             // Arrange
-            var filter = new ActivityLogFilterDto(new[] { 3 }, false);
+            var filter = new ActivityLogFilterDto([3], false);
             var page = 1;
             var pageSize = 10;
 

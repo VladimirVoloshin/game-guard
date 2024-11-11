@@ -13,7 +13,8 @@ namespace GameGuard.PlayerActivityEmulator.PlayerActivityGenerator
             [
                 new NormalPlayerActivityGenerator(),
                 new BotPlayerActivityGenerator(),
-                new CheaterPlayerActivityGenerator()
+                new CheaterPlayerActivityGenerator(),
+                new PasswordRememberingPlayerActivityGenerator()
             ];
         }
 
@@ -23,7 +24,7 @@ namespace GameGuard.PlayerActivityEmulator.PlayerActivityGenerator
             {
                 PlayerStatusType.Suspicious
                     => ActivityGenerators.First(x =>
-                        x.PlayerBehaviorType == (PlayerGeneratorType)random.Next(2, 4)
+                        x.PlayerBehaviorType == (PlayerGeneratorType)random.Next(2, 5)
                     ),
                 _
                     => ActivityGenerators.First(x =>
