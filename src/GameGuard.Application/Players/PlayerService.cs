@@ -1,4 +1,5 @@
 ﻿using GameGuard.Application.Players.Dtos;
+using GameGuard.Application.Players.Exceptions;
 using GameGuard.Domain.Players;
 
 namespace GameGuard.Application.Players
@@ -43,6 +44,18 @@ namespace GameGuard.Application.Players
                 (int)x.Status,
                 x.Status.ToString()
             ));
+        }
+
+        public async Task UpdatePlayerStatusAsync(int playerId, PlayerStatusType newStatus)
+        {
+            var player = await _playerRepository.GetByIdAsync(playerId);
+            if (player == null)
+            {
+                throw new PlayerNotFoundException(playerId);
+            }
+
+            player.UpdateStatus(newStatus);
+            await _playerRepository.UpdateAsync(player);
         }
     }
 }

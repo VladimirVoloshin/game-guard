@@ -24,5 +24,16 @@ namespace GameGuard.Infrastructure.Repositories
         {
             return await _context.Players.ToListAsync();
         }
+
+        public async Task<Player?> GetByIdAsync(int playerId)
+        {
+            return await _context.Players.FindAsync(playerId);
+        }
+
+        public async Task UpdateAsync(Player player)
+        {
+            _context.Players.Attach(player);
+            await _context.SaveChangesAsync();
+        }
     }
 }

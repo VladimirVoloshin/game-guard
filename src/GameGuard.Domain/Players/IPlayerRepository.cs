@@ -4,5 +4,7 @@
     {
         Task<IEnumerable<PlayerStatusSummary>> GetPlayersStatusesSummaryAsync();
         Task<IEnumerable<Player>> GetAllAsync();
+        Task<Player?> GetByIdAsync(int playerId);
+        Task UpdateAsync(Player player);
     }
 }

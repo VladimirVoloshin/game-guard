@@ -12,5 +12,10 @@
         public int Id { get; private set; }
         public string Username { get; private set; }
         public PlayerStatusType Status { get; private set; }
+
+        public void UpdateStatus(PlayerStatusType newStatus)
+        {
+            Status = newStatus;
+        }
     }
 }

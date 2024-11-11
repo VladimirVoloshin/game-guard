@@ -1,4 +1,5 @@
 ﻿using GameGuard.Application.Players.Dtos;
+using GameGuard.Domain.Players;
 
 namespace GameGuard.Application.Players
 {
@@ -6,5 +7,6 @@ namespace GameGuard.Application.Players
     {
         Task<PlayersSummaryDto> GetPlayersSummaryAsync();
         Task<IEnumerable<PlayerDto>> GetPlayersAsync();
+        Task UpdatePlayerStatusAsync(int id, PlayerStatusType newStatus);
     }
 }

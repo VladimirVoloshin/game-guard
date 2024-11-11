@@ -14,3 +14,7 @@ export const getPlayersAsync = async () => {
         `/api/players`
     );
 };
+
+export const updatePlayerStatusAsync = async (playerId: number, newStatusId: number) => {
+    return await requests.put(`/api/players/${playerId}/status`, { 'statusId': newStatusId })
+}

@@ -1,0 +1,11 @@
+.player-management {
+    padding: 20px;
+  }
+  
+  .player-management h1 {
+    margin-bottom: 20px;
+  }
+  
+  .status-select {
+    width: 120px;
+  }
