@@ -95,6 +95,11 @@ const ActivityLog: React.FC = () => {
     ));
   }; 
 
+  const handleShowSizeChange = (current: number, size: number) => {
+    setPageSize(size);
+    setCurrentPage(1); // Reset to first page when changing page size
+  };
+
   return (
     <div>
       <div className="activity-log-header">
@@ -151,6 +156,8 @@ const ActivityLog: React.FC = () => {
         pageSize={pageSize}
         onChange={(page) => setCurrentPage(page)}
         className="activity-log-pagination"
+        onShowSizeChange={handleShowSizeChange}
+        showSizeChanger
       />    
     </div>
   );

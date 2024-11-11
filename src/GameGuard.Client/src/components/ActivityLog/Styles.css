@@ -145,4 +145,6 @@
   .activity-log-pagination {
     margin-top: 20px;
     text-align: right;
+    display: flex;
+    justify-content: center;
   }
