@@ -1,0 +1,22 @@
+.suspicious-switch-container {
+    display: flex;
+    align-items: left;
+    cursor: pointer;
+}
+
+.suspicious-label {
+    padding-left: 6px;
+    font-weight: bold;
+}
+
+.suspicious-row {
+    background-color: #fff1f0;
+}
+
+.suspicious-switch-on.ant-switch-checked {
+    background-color: #ff4d4f !important;
+}
+
+.suspicious-switch-on:not(.ant-switch-checked) {
+    background-color: rgba(0, 0, 0, 0.25) !important;
+}

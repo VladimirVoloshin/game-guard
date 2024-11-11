@@ -1,0 +1,54 @@
+.activity-log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .activity-log-controls {
+    display: flex;
+    align-items: center;
+  }
+  
+  .player-select {
+    width: 300px;
+    margin-right: 10px;
+  }
+  
+  .suspicious-select {
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .refresh-button {
+    margin-right: 16px;
+    border-radius: 6px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #e6e6e6 !important;
+    color: #000000 !important;
+    transition: all 0.3s !important;
+  }
+  
+  .refresh-button:hover {
+    background-color: #e8e8e8 !important;
+    border-color: #d5d5d5 !important;
+  }
+  
+  .refresh-button .reload-icon {
+    margin-right: 10px;
+  }
+  
+  .auto-refresh-container {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+  }
+  
+  .auto-refresh-switch {
+    margin-right: 8px;
+  }
+  
+  .auto-refresh-label {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);
+  }

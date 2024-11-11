@@ -1,0 +1,19 @@
+.review-status {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    height: 100%;
+  }
+   
+  .reviewed .review-icon {
+    color: #52c41a;
+  }
+  
+  .not-reviewed .review-icon {
+    color: #d9d9d9;
+  }
+
+  .review-icon {
+    font-size: 18px;
+  }
+  
