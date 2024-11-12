@@ -7,6 +7,9 @@ GameGuard is a comprehensive solution for detecting malicious activity and bots 
 2.  **GameGuard.Client**: A React-based dashboard UI for visualizing and managing detection data.
 3.  **GameGuard.PlayerActivityEmulator**: A console application that emulates random player activity for testing purposes.
 
+## Demo Video: 
+### [Video](https://drive.google.com/file/d/1Rcll3g73ZrgsIyXpG85PC23Qfv-2lc4d/view?usp=sharing)
+
 ## Setup and Running Instructions
 
 ### GameGuard.API
