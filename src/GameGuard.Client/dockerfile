@@ -1,0 +1,15 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY GameGuard.Client/package*.json ./
+
+RUN npm ci
+
+COPY GameGuard.Client/ ./
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

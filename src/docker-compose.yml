@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: GameGuard.API/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Data Source=/app/GameGuard.db
+      - CorsOrigins="http://client"
+    networks:
+      - gameguard-network
+
+  client:
+    build:
+      context: .
+      dockerfile: GameGuard.Client/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_GAME_GUARD_API_URL=http://localhost:8080
+    depends_on:
+      - api
+    networks:
+      - gameguard-network
+
+  player-activity-emulator:
+    build:
+      context: .
+      dockerfile: Other/GameGuard.PlayerActivityEmulator/Dockerfile 
+    environment:
+      - API_URL=http://api:8080
+    depends_on:
+      - api
+    networks:
+      - gameguard-network
+
+networks:
+  gameguard-network:
+    driver: bridge

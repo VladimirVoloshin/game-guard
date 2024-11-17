@@ -26,4 +26,5 @@ RUN dotnet publish "./GameGuard.API.csproj" -c $BUILD_CONFIGURATION -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY GameGuard.API/appsettings*.json ./
 ENTRYPOINT ["dotnet", "GameGuard.API.dll"]
