@@ -3,12 +3,12 @@ using GameGuard.Domain.Common.Specifications;
 
 namespace GameGuard.Domain.ActivityLogs.Specifications
 {
-    public class ActivityLogFilterSpecification : ISpecification<ActivityLog>
+    public class ActivityLogFilterSpec : ISpecification<ActivityLog>
     {
         public IEnumerable<int>? PlayerIds { get; }
         public bool? IsSuspicious { get; }
 
-        public ActivityLogFilterSpecification(IEnumerable<int>? playerIds, bool? isSuspicious)
+        public ActivityLogFilterSpec(IEnumerable<int>? playerIds, bool? isSuspicious)
         {
             PlayerIds = playerIds;
             IsSuspicious = isSuspicious;

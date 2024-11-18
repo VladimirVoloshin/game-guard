@@ -5,7 +5,7 @@ using Moq;
 
 namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
-    public class RapidLevelCompletionSpecificationTests
+    public class RapidLevelCompletionSpecTests
     {
         [Fact]
         public async Task RapidLevelCompletionSpecification_ShouldReturnFalse_WhenLevelsNotCompletedRapidly()
@@ -13,7 +13,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new RapidLevelCompletionSpecification(mockRepository.Object);
+            var specification = new RapidLevelCompletionSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.CompleteLevel, currentTime);
@@ -40,7 +40,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new RapidLevelCompletionSpecification(mockRepository.Object);
+            var specification = new RapidLevelCompletionSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.CompleteLevel, currentTime);

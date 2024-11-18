@@ -25,10 +25,7 @@ namespace GameGuard.Application.ActivityLogs
             int pageSize
         )
         {
-            var specification = new ActivityLogFilterSpecification(
-                filter.PlayerIds,
-                filter.IsSuspicious
-            );
+            var specification = new ActivityLogFilterSpec(filter.PlayerIds, filter.IsSuspicious);
 
             var (activities, totalCount) = await _activityRepository.GetAllAsync(
                 specification,

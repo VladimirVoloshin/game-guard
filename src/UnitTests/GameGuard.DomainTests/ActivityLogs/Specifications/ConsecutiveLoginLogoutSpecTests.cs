@@ -5,7 +5,7 @@ using Moq;
 
 namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
-    public class ConsecutiveLoginLogoutSpecificationTests
+    public class ConsecutiveLoginLogoutSpecTests
     {
         [Fact]
         public async Task ShouldReturnTrue_WhenConsecutiveLoginLogoutDetected()
@@ -13,7 +13,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new ConsecutiveLoginLogoutSpecification(mockRepository.Object);
+            var specification = new ConsecutiveLoginLogoutSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.Login, currentTime);
@@ -42,7 +42,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new ConsecutiveLoginLogoutSpecification(mockRepository.Object);
+            var specification = new ConsecutiveLoginLogoutSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.Login, currentTime);

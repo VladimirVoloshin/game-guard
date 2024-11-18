@@ -5,12 +5,12 @@
     /// This specification is satisfied only if both the left and right specifications are satisfied.
     /// </summary>
     /// <typeparam name="T">The type of entity being specified.</typeparam>
-    public class AndSpecification<T> : Specification<T>
+    public class AndSpecification<T> : CompositeSpecification<T>
     {
-        private readonly Specification<T> _left;
-        private readonly Specification<T> _right;
+        private readonly CompositeSpecification<T> _left;
+        private readonly CompositeSpecification<T> _right;
 
-        public AndSpecification(Specification<T> left, Specification<T> right)
+        public AndSpecification(CompositeSpecification<T> left, CompositeSpecification<T> right)
         {
             _left = left;
             _right = right;

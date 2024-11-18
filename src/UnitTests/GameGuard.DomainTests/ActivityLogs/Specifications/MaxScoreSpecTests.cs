@@ -4,13 +4,13 @@ using GameGuard.Domain.ActivityLogs.Specifications;
 
 namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
-    public class MaxScoreSpecificationTests
+    public class MaxScoreSpecTests
     {
         [Fact]
         public async Task ShouldReturnTrue_WhenMaxScoreActivityDetected()
         {
             // Arrange
-            var specification = new MaxScoreSpecification();
+            var specification = new MaxScoreSpec();
             var activityLog = new ActivityLog(
                 1,
                 ActivityActionType.MaxScorePlayer,
@@ -28,7 +28,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
         public async Task ShouldReturnFalse_WhenNotMaxScoreActivity()
         {
             // Arrange
-            var specification = new MaxScoreSpecification();
+            var specification = new MaxScoreSpec();
             var activityLog = new ActivityLog(1, ActivityActionType.CompleteLevel, DateTime.UtcNow);
 
             // Act

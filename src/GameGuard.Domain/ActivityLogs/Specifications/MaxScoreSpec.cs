@@ -6,7 +6,7 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
     /// Identifies potential cheaters by flagging users who achieve the maximum score.
     /// This specification helps detect suspicious high-scoring activities.
     /// </summary>
-    public class MaxScoreSpecification : Specification<ActivityLog>
+    public class MaxScoreSpec : CompositeSpecification<ActivityLog>
     {
         public override Task<bool> IsSatisfiedByAsync(ActivityLog activityLog)
         {

@@ -2,6 +2,7 @@ using GameGuard.Application.ActivityLogs;
 using GameGuard.Application.Players;
 using GameGuard.Domain.ActivityLogs;
 using GameGuard.Domain.ActivityLogs.Events;
+using GameGuard.Domain.ActivityLogs.Specifications;
 using GameGuard.Domain.Players;
 using GameGuard.Infrastructure;
 using GameGuard.Infrastructure.Repositories;
@@ -53,6 +54,7 @@ internal class Program
         builder.Services.AddScoped<IActivityLogRepository, ActivityLogRepository>();
         builder.Services.AddScoped<IActivityLogService, ActivityLogService>();
         builder.Services.AddScoped<INotificationHandler<ActivityCreatedEvent>, ActivityMonitor>();
+        builder.Services.AddScoped<SuspiciousPlayerCompositeSpec>();
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
     }
 
