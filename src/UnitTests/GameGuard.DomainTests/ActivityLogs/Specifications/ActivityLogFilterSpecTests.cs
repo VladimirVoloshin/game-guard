@@ -4,14 +4,14 @@ using GameGuard.Domain.ActivityLogs.Specifications;
 
 namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
-    public class ActivityLogFilterSpecificationTests
+    public class ActivityLogFilterSpecTests
     {
         [Fact]
         public void ToExpression_WithPlayerIds_ShouldFilterCorrectly()
         {
             // Arrange
             var playerIdsFilter = new[] { 1, 2 };
-            var spec = new ActivityLogFilterSpecification(playerIdsFilter, null);
+            var spec = new ActivityLogFilterSpec(playerIdsFilter, null);
 
             // Act
             var expression = spec.ToExpression();
@@ -29,7 +29,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var isSuspiciousFilter = true;
             IEnumerable<int> playerIdsFilter = [];
-            var spec = new ActivityLogFilterSpecification(playerIdsFilter, isSuspiciousFilter);
+            var spec = new ActivityLogFilterSpec(playerIdsFilter, isSuspiciousFilter);
             var suspiciousLog = new ActivityLog(1, ActivityActionType.MaxScorePlayer);
             suspiciousLog.MarkAsSuspicious();
             var normalLog = new ActivityLog(1, ActivityActionType.CompleteLevel);
@@ -49,7 +49,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var playerIdsFilter = new[] { 1, 2 };
             var isSuspiciousFilter = true;
-            var spec = new ActivityLogFilterSpecification(playerIdsFilter, isSuspiciousFilter);
+            var spec = new ActivityLogFilterSpec(playerIdsFilter, isSuspiciousFilter);
 
             var suspiciousLog1 = new ActivityLog(1, ActivityActionType.MaxScorePlayer);
             suspiciousLog1.MarkAsSuspicious();
@@ -76,7 +76,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             IEnumerable<int> playerIdsFilter = [];
             bool? isSuspiciousFilter = null;
-            var spec = new ActivityLogFilterSpecification(playerIdsFilter, isSuspiciousFilter);
+            var spec = new ActivityLogFilterSpec(playerIdsFilter, isSuspiciousFilter);
 
             var log1 = new ActivityLog(1, ActivityActionType.Login);
             var log2 = new ActivityLog(2, ActivityActionType.CompleteLevel);

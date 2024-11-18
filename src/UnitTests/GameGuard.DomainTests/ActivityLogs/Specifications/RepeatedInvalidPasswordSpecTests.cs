@@ -5,7 +5,7 @@ using Moq;
 
 namespace GameGuard.DomainTests.ActivityLogs.Specifications
 {
-    public class RepeatedInvalidPasswordSpecificationTests
+    public class RepeatedInvalidPasswordSpecTests
     {
         [Fact]
         public async Task ShouldReturnTrue_WhenThreeConsecutiveInvalidPasswords()
@@ -13,7 +13,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new RepeatedInvalidPasswordSpecification(mockRepository.Object);
+            var specification = new RepeatedInvalidPasswordSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.InvalidPassword, currentTime);
@@ -41,7 +41,7 @@ namespace GameGuard.DomainTests.ActivityLogs.Specifications
             // Arrange
             var mockRepository = new Mock<IActivityLogRepository>();
 
-            var specification = new RepeatedInvalidPasswordSpecification(mockRepository.Object);
+            var specification = new RepeatedInvalidPasswordSpec(mockRepository.Object);
 
             var currentTime = DateTime.UtcNow;
             var activityLog = new ActivityLog(1, ActivityActionType.InvalidPassword, currentTime);

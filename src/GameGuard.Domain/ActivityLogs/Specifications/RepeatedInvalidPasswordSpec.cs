@@ -6,12 +6,12 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
     /// Detects potential brute force password attacks by identifying repeated invalid login attempts.
     /// Flags users who make multiple consecutive failed password entries, indicating possible unauthorized access attempts.
     /// </summary>
-    public class RepeatedInvalidPasswordSpecification : Specification<ActivityLog>
+    public class RepeatedInvalidPasswordSpec : CompositeSpecification<ActivityLog>
     {
         private const int RequiredInvalidAttempts = 3;
         private readonly IActivityLogRepository _repository;
 
-        public RepeatedInvalidPasswordSpecification(IActivityLogRepository repository)
+        public RepeatedInvalidPasswordSpec(IActivityLogRepository repository)
         {
             _repository = repository;
         }

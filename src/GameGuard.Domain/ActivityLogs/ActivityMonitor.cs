@@ -12,17 +12,16 @@ namespace GameGuard.Domain.ActivityLogs
     /// </summary>
     public class ActivityMonitor : INotificationHandler<ActivityCreatedEvent>
     {
-        private readonly Specification<ActivityLog> _suspiciousActivityCompositeSpecification;
+        private readonly CompositeSpecification<ActivityLog> _suspiciousActivityCompositeSpecification;
         private readonly IActivityLogRepository _activityRepository;
 
-        public ActivityMonitor(IActivityLogRepository activityRepository)
+        public ActivityMonitor(
+            SuspiciousPlayerCompositeSpec suspiciousPlayerCompositeSpecification,
+            IActivityLogRepository activityRepository
+        )
         {
             _activityRepository = activityRepository;
-            _suspiciousActivityCompositeSpecification =
-                new RapidLevelCompletionSpecification(activityRepository)
-                | new ConsecutiveLoginLogoutSpecification(activityRepository)
-                | new RepeatedInvalidPasswordSpecification(activityRepository)
-                | new MaxScoreSpecification();
+            _suspiciousActivityCompositeSpecification = suspiciousPlayerCompositeSpecification;
         }
 
         public async Task Handle(

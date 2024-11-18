@@ -20,4 +20,8 @@
     <ProjectReference Include="..\GameGuard.Infrastructure\GameGuard.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="$(ProjectDir)..\GameGuard.Infrastructure\appsettings.Development.json" />
+  </ItemGroup>
+
 </Project>

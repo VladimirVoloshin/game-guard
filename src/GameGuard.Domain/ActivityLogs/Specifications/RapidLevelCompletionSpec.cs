@@ -6,13 +6,13 @@ namespace GameGuard.Domain.ActivityLogs.Specifications
     /// Identifies potentially suspicious rapid level completions.
     /// Flags players who finish levels unusually quickly, possibly indicating cheating or exploitation.
     /// </summary>
-    public class RapidLevelCompletionSpecification : Specification<ActivityLog>
+    public class RapidLevelCompletionSpec : CompositeSpecification<ActivityLog>
     {
         private const int RequiredLogCount = 2;
         private const int RapidCompletionThresholdSeconds = 30;
         private readonly IActivityLogRepository _repository;
 
-        public RapidLevelCompletionSpecification(IActivityLogRepository repository)
+        public RapidLevelCompletionSpec(IActivityLogRepository repository)
         {
             _repository = repository;
         }

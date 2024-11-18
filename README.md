@@ -1,16 +1,19 @@
-
 # GameGuard Solution
 
 GameGuard is a comprehensive solution for detecting malicious activity and bots in gaming environments. This solution consists of three main components:
 
-1.  **GameGuard.API**: A dashboard API for malicious and bot detection.
-2.  **GameGuard.Client**: A React-based dashboard UI for visualizing and managing detection data.
-3.  **GameGuard.PlayerActivityEmulator**: A console application that emulates random player activity for testing purposes.
+1. **GameGuard.API**: A dashboard API for malicious and bot detection.
+2. **GameGuard.Client**: A React-based dashboard UI for visualizing and managing detection data.
+3. **GameGuard.PlayerActivityEmulator**: A console application that emulates random player activity for testing purposes.
 
 ## Demo Video: 
 ### [Video](https://drive.google.com/file/d/1Rcll3g73ZrgsIyXpG85PC23Qfv-2lc4d/view?usp=sharing)
 
 ## Setup and Running Instructions
+
+You can run the GameGuard solution using two methods:
+
+### Option 1: Running Components Individually
 
 ### GameGuard.API
 
@@ -92,6 +95,17 @@ bash
 ```
 dotnet run --project ./src/Other/GameGuard.PlayerActivityEmulator
 ```
+
+### Option 2: Running with Docker Compose
+
+1. Ensure you have Docker and Docker Compose installed on your system.
+
+2. Navigate to the root `game-guard` folder where the `docker-compose.yml` file is located.
+
+3. Build and start the containers:
+
+   ```bash
+   docker compose up --build
 
 ## Usage
 
